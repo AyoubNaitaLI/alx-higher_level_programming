@@ -1,11 +1,12 @@
 #!/usr/bin/node
-const size = Math.floor(Number(process.argv[2]));
-if (isNaN(size)) {
-  console.log('Missing size');
-} else {
-  for (let r = 0; r < size; r++) {
-    let row = '';
-    for (let c = 0; c < size; c++) row += 'X';
-    console.log(row);
+if (process.argv[2]) {
+  if (isNaN(process.argv[2]) === false) {
+    for (let i = 0; i < Number(process.argv[2]); i++) {
+      console.log('X'.repeat(Number(process.argv[2])));
+    }
+  } else {
+    console.log('Missing size');
   }
+} else {
+  console.log('Missing size');
 }

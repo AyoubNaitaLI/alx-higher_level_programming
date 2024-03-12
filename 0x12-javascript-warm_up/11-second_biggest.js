@@ -1,9 +1,17 @@
 #!/usr/bin/node
-if (process.argv.length <= 3) {
-  console.log(0);
+const array = [];
+let j = 0;
+if (process.argv[2]) {
+  if (process.argv.length === 3) {
+    console.log(0);
+  } else {
+    for (let i = 2; i < process.argv.length; i++) {
+      array[j] = Number(process.argv[i]);
+      j++;
+    }
+    array.splice(array.indexOf(Math.max(...array)), 1);
+    console.log(Math.max(...array));
+  }
 } else {
-  const args = process.argv.map(Number)
-    .slice(2, process.argv.length)
-    .sort((a, b) => a - b);
-  console.log(args[args.length - 2]);
+  console.log(0);
 }
