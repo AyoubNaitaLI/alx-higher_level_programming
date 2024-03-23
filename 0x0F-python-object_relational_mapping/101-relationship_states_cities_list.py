@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" This is the 101-relationship_states_cities_list module """
+""" This is the 102-relationship_cities_states_list module """
 
 import sys
 from relationship_state import Base, State
@@ -16,8 +16,6 @@ if __name__ == "__main__":
     Session = sessionmaker()
     Session.configure(bind=engine)
     session = Session()
-    states = session.query(State).order_by(State.id).all()
-    for obj in states:
-        print(f"{obj.id}: {obj.name}")
-        for city in obj.cities:
-            print(f"\t{city.id}: {city.name}")
+    cities = session.query(City).order_by(City.id).all()
+    for city in cities:
+        print(f"{city.id}: {city.name} -> {city.states.name}")
