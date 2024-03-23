@@ -1,15 +1,18 @@
 #!/usr/bin/python3
-""" This is relationship_city module """
+""" This is relationship_state module """
 
 
-from sqlalchemy import Column, Integer, String, ForeignKey
-from relationship_state import Base
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
+
+Base = declarative_base()
 
 
-class City(Base):
-    """ This is the City class """
-    __tablename__ = 'cities'
+class State(Base):
+    """ This is the states class """
+    __tablename__ = 'states'
     id = Column(Integer, primary_key=True, nullable=False, unique=True,
                 autoincrement=True)
     name = Column(String(128), nullable=False)
-    state_id = Column(Integer, ForeignKey("states.id"), nullable=False)
+    cities = relationship("City", backref="states")
