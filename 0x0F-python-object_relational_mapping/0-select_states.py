@@ -1,16 +1,18 @@
 #!/usr/bin/python3
-"""  lists all states from the database hbtn_0e_0_usa """
+""" This is the 0-select_states module it lists all the states present in the
+hbtn_0e_0_usa database """
+
+
 import MySQLdb
 import sys
 
-
-if __name__ == "__main__":
-    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
-                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
-    cur = db.cursor()
+if __name__ == '__main__':
+    conn = MySQLdb.connect(host="localhost", port=3306, user=sys.argv[1],
+                           passwd=sys.argv[2], db=sys.argv[3])
+    cur = conn.cursor()
     cur.execute("SELECT * FROM states")
-    rows = cur.fetchall()
-    for row in rows:
+    query_rows = cur.fetchall()
+    for row in query_rows:
         print(row)
     cur.close()
-    db.close()
+    conn.close()
